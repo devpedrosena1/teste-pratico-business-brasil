@@ -1,17 +1,16 @@
-# Drone Mission Control API
+# MINI API DE CADASTRO DE USUÁRIOS
 
 ![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-3.9-blue?style=for-the-badge&logo=apachemaven&logoColor=white)
-![FIAP](https://img.shields.io/badge/FIAP-ED145B?style=for-the-badge)
 
 ---
 
 ## 💡 Sobre o Projeto
 
-O **Drone Mission Control API** é uma aplicação desenvolvida em **Spring Boot** que implementa um sistema de gerenciamento de **drones e missões**.  
+Aplicação desenvolvida em **Spring Boot** que implementa um sistema de gerenciamento de **usuários**.  
 
-A API oferece as operações **CRUD básicas** (cadastrar, consultar, atualizar e remover drones e missões), além de **endpoints não-CRUD inspirados em cenários reais de uso** — como listagem de missões futuras, geração de relatórios de bateria, ranking de drones mais utilizados e busca de missões por localização.  
+A API oferece as operações **CRUD básicas** (cadastrar, consultar).
 
 ---
 
