@@ -3,6 +3,7 @@ package br.com.businessbrasil.TestePraticoBackEnd.service;
 import br.com.businessbrasil.TestePraticoBackEnd.domainmodel.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface UserService {
@@ -15,7 +16,7 @@ public interface UserService {
 
     User create(User user);
     List<User> findAll();
-    User findById(UUID id);
+    Optional<User> findById(UUID id);
     boolean existsById(UUID id);
 
 }

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class UserDTO {
 
     @NotNull(message = "This field is required.")
     @PastOrPresent(message = "The creation date cannot be in the future")
-    private LocalDateTime creationDate;
+    private LocalDate creationDate;
 
     public static UserDTO fromEntity(User user) {
         if (user == null) {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -28,11 +29,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(UUID id) {
-        if (!this.userRepository.existsById(id)) {
-            throw new IllegalArgumentException("User not found.");
-        }
-        return this.userRepository.findById(id).orElse(null);
+    public Optional<User> findById(UUID id) {
+        return this.userRepository.findById(id);
     }
 
     @Override

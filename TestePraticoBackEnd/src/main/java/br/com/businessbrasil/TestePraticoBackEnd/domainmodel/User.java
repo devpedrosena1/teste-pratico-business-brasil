@@ -3,7 +3,7 @@ package br.com.businessbrasil.TestePraticoBackEnd.domainmodel;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -11,11 +11,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private @Getter @Setter UUID id;
 
     @Column(name = "NAME", length = 50, nullable = false, unique = true)
@@ -25,7 +25,7 @@ public class User {
     private @Getter @Setter String email;
 
     @Column(name = "DATA_CRIACAO", length = 50, nullable = false)
-    private @Getter @Setter LocalDateTime creationDate;
+    private @Getter @Setter LocalDate creationDate;
 
     @Override
     public boolean equals(Object o) {
