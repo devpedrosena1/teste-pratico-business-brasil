@@ -40,7 +40,7 @@ Representa um usuário no sistema.
 
 ## 📌 Endpoints
 
-### **Drones** (`/api/v1/drones`)
+### **Users** (`/api/users`)
 
 - `POST /api/users` → Insere um novo usuário
 - `GET /api/users` → Busca os ussários cadastrados no banco
