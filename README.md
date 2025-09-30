@@ -27,28 +27,14 @@ A API oferece as operações **CRUD básicas** (cadastrar, consultar).
 
 ## 🗂️ Entidades do Sistema
 
-### **Drone**
-Representa um drone cadastrado no sistema, que pode estar associado a várias missões (**relação 1:N**).  
+### **User**
+Representa um usuário no sistema.  
 
 **Atributos:**
-- `id` *(UUID)* → Identificador único do drone, gerado automaticamente  
-- `model` *(String, máx. 100)* → Modelo do drone (ex.: *Drone Teste*)  
-- `batteryCapacity` *(int)* → Capacidade da bateria em minutos  
-- `status` *(String, máx. 20)* → Situação atual (`ativo`, `manutenção`, `fora de operação`)  
-- `missions` *(List<Mission>)* → Lista de missões atribuídas ao drone  
-
----
-
-### **Missão**
-Representa uma missão atribuída a um drone específico.
-
-**Atributos:**
-- `id` *(UUID)* → Identificador único da missão, gerado automaticamente
-- `description` *(String, máx. 100)* → Texto livre com a descrição (ex.: *Inspeção de linha de transmissão*)
-- `location` *(String, máx. 50)* → Localização da missão (cidade ou coordenadas)
-- `scheduledDate` *(LocalDate)* → Data prevista para execução da missão
-- `estimatedBatteryUsage` *(int)* → Consumo de bateria estimado (em minutos)
-- `droneId` *(Drone)* → Drone responsável pela missão (chave estrangeira) 
+- `id` *(UUID)* → Identificador único do usuário, gerado automaticamente  
+- `name` *(String, máx. 50)* → Nome do usuário 
+- `email` *(String, máx. 100)* → E-mail do usuário 
+- `creationDate` *(LocalDate, máx. 50)* → Data de criação 
 
 ---
 
@@ -56,59 +42,24 @@ Representa uma missão atribuída a um drone específico.
 
 ### **Drones** (`/api/v1/drones`)
 
-- `POST /api/drone` → Insere um novo drone
-- `GET /api/drone/{id}` → Busca drone por ID
-- `PUT /api/drone/{id}` → Atualiza um drone (objeto inteiro) por ID
-- `PATCH /api/drone/{id}` → Atualiza parcialmente um drone por ID
-- `DELETE /api/drone` → Remove o objeto drone por ID
-- `DELETE /api/drone/removeObject` → Remove objeto drone inteiro
-- `GET /api/drone/{id}/baterry-report` → Retorna a média de bateria de drone por ID
-- `GET /api/drone/{id}/ranking` → Retorna o ranking de drones por missão
+- `POST /api/users` → Insere um novo usuário
+- `GET /api/users` → Busca os ussários cadastrados no banco
+- `GET /api/users/{id}` → Busca um usuário por ID
 
-### **Missões** (`/api/v1/missions`)
-
-- `GET /api/mission` → Lista todas as missões
-- `GET /api/mission/{id}` → Busca missão por ID
-- `GET /api/mission/mission-drone/{droneId}` → Busca missões ligadas a um drone específico
-- `POST /api/mission` → Cadastra uma nova missão
-
----
 
 ## 📋 Exemplos de Requisições (cURL)
 
-### **Cadastrar Drones**
+### **Cadastrar usuário**
 
 ```bash
 {
-  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "model": "string",
-  "batteryCapacity": 0,
-  "status": "string"
+  "name": "Pedro",
+  "email": "pedro@businessbrasil.com",
+  "creationDate": "2025-09-20"
 }
+
+- O campo "ID" é gerado automaticamente, por isso não está especificado no JSON.
 ```
-
----
-
-### **Cadastrar Missões**
-
-```bash
-{
-  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "description": "string",
-  "location": "string",
-  "scheduledDate": "2025-09-27",
-  "droneId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "estimatedBatteryUsage": 0
-}
-```
-
----
-
-
-## 🧐 Justificativa para uso de GET nos Endpoints Não-CRUD
-
-Os endpoints não-CRUD da API utilizam o método **HTTP GET** porque realizam apenas **consultas a dados já existentes** — como a listagem de missões futuras de um drone, geração de relatórios de uso de bateria, ranking de drones mais utilizados ou busca por localização.
-Como não envolvem **criação, alteração ou exclusão de recursos**, não se justificaria o uso de métodos como `POST`, `PUT` ou `DELETE`.
 
 ---
 
@@ -124,12 +75,12 @@ Como não envolvem **criação, alteração ou exclusão de recursos**, não se 
 
 1. **Clonar o repositório**  
 ```bash
-git clone https://github.com/devpedrosena1/java-advanced/Project-Mission-Drone.git
+git clone https://github.com/devpedrosena1/teste-pratico-business-brasil.git
 ```
 
 2. **Entrar na pasta do projeto**  
 ```bash
-cd Project-Mission-Drone
+cd TestePraticoBackEnd
 ```
 
 3. **Compilar o projeto**  
@@ -150,6 +101,19 @@ O projeto iniciará em:
 A documentação Swagger estará disponível em:  
 👉 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
+O banco de dados em memória estára disponível em:  
+👉 [http://localhost:8080/console](http://localhost:8080/console)
+
+👉 Driver Class: org.h2.Driver
+
+👉 JDBC URL: jdbc:h2:mem:blog_database
+
+👉 Username: SA
+
+👉 Password: masterkey
+
+-- 
+
 ---
 
 ## 📐 Especificações Técnicas
@@ -160,8 +124,7 @@ A documentação Swagger estará disponível em:
   - `presentation.controllers` → endpoints REST  
   - `infrastructure` → configuração do Swagger e handlers globais  
 
-- Repositórios customizados (`DroneRepositoryCustom`, `DroneRepositoryImpl`, etc.) implementam consultas avançadas com QueryDSL.
-- Uso de **DTOs** para transporte de dados (`DroneDTO`, `MissionDTO`, `DroneRankingDTO`)  
+- Uso de **DTOs** para transporte de dados (`UserDTO`)  
 - Tratamento centralizado de exceções com `GlobalExceptionHandler`
 
 ---
