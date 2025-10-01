@@ -112,8 +112,6 @@ O banco de dados em memória estára disponível em:
 
 👉 Password: masterkey
 
--- 
-
 ---
 
 ## 📐 Especificações Técnicas
@@ -126,6 +124,7 @@ O banco de dados em memória estára disponível em:
 
 - Uso de **DTOs** para transporte de dados (`UserDTO`)  
 - Tratamento centralizado de exceções com `GlobalExceptionHandler`
+- Teste de **Service** utilizando JUnit e Mockito `UserServiceImplTest`
 
 ---
 
